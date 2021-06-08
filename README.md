@@ -9,4 +9,6 @@ jsonSaveData.Save()
 jsonSaveData.Load()
 
 ## usage:
-Open SampleScene.unity
+SampleScene.unity
+
+see more details: https://www.create-forever.games/unity-saveload-json/
