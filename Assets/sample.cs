@@ -10,7 +10,9 @@ public class sample : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI dataPath = null;
     [SerializeField]
-    TextMeshProUGUI data = null;
+    TextMeshProUGUI classdata = null;
+    [SerializeField]
+    TextMeshProUGUI click = null;
 
     public enum eTest
     {
@@ -36,21 +38,14 @@ public class sample : MonoBehaviour
         dataPath.SetText(Path.Combine(Application.persistentDataPath, filename));
 
         // clear
-        updateLoadData(new TestData());
-    }
-
-    void updateLoadData(TestData data)
-    {
-        this.data.SetText(
-            $"ID = {data.ID}{Environment.NewLine}" +
-            $"Message = '{data.Message}'{Environment.NewLine}" +
-            $"Flag = {data.Flag}{Environment.NewLine}" +
-            $"Test = {data.Test}{Environment.NewLine}"
-        );
+        classdata.SetText("");
     }
 
     public void ClickButtonSave()
     {
+        click.SetText("* SAVE *");
+        classdata.SetText("");
+
         TestData savedata = new TestData()
         {
             ID = 10,
@@ -65,9 +60,32 @@ public class sample : MonoBehaviour
 
     public void ClickButtonLoad()
     {
+        classdata.SetText("");
+
         TestData loaddata = jsonSaveLoad.Load<TestData>(filename);
 
         // display load data
-        updateLoadData(loaddata);
+        if (loaddata == null)
+        {
+            click.SetText("* LOAD ERROR *");
+        }
+        else
+        {
+            click.SetText("* LOAD *");
+            classdata.SetText(
+                $"ID = {loaddata.ID}{Environment.NewLine}" +
+                $"Message = '{loaddata.Message}'{Environment.NewLine}" +
+                $"Flag = {loaddata.Flag}{Environment.NewLine}" +
+                $"Test = {loaddata.Test}{Environment.NewLine}"
+            );
+        }
+    }
+
+    public void ClickButtonDelete()
+    {
+        click.SetText("* DELETE *");
+        classdata.SetText("");
+
+        jsonSaveLoad.Delete(filename);
     }
 }

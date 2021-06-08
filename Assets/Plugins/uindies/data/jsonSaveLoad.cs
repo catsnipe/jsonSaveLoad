@@ -8,6 +8,17 @@ using UnityEngine;
 public class jsonSaveLoad
 {
     /// <summary>
+    /// delete file
+    /// </summary>
+    /// <param name="filename"></param>
+    public static void Delete(string filename)
+    {
+        filename = Path.Combine(Application.persistentDataPath, filename);
+
+        File.Delete(filename);
+    }
+
+    /// <summary>
     /// save data
     /// </summary>
     /// <param name="filename"></param>
@@ -45,7 +56,14 @@ public class jsonSaveLoad
     {
         string data = null;
 
-        using (StreamReader reader = new StreamReader(Path.Combine(Application.persistentDataPath, filename), false))
+        filename = Path.Combine(Application.persistentDataPath, filename);
+
+        if (File.Exists(filename) == false)
+        {
+            return null;
+        }
+
+        using (StreamReader reader = new StreamReader(filename, false))
         {
             try
             {
