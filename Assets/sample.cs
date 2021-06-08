@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 
 public class sample : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI Text = null;
+    TextMeshProUGUI dataPath = null;
+    [SerializeField]
+    TextMeshProUGUI data = null;
 
     public enum eTest
     {
@@ -26,15 +29,19 @@ public class sample : MonoBehaviour
         public int[]    Stage;
     }
 
+    const string filename = "savedata";
+
     void Awake()
     {
+        dataPath.SetText(Path.Combine(Application.persistentDataPath, filename));
+
         // clear
         updateLoadData(new TestData());
     }
 
     void updateLoadData(TestData data)
     {
-        Text.SetText(
+        this.data.SetText(
             $"ID = {data.ID}{Environment.NewLine}" +
             $"Message = '{data.Message}'{Environment.NewLine}" +
             $"Flag = {data.Flag}{Environment.NewLine}" +
@@ -53,12 +60,12 @@ public class sample : MonoBehaviour
             Stage = new int[] { 1,2,3,4,5 },
         };
 
-        jsonSaveLoad.Save("savedata", savedata);
+        jsonSaveLoad.Save(filename, savedata);
     }
 
     public void ClickButtonLoad()
     {
-        TestData loaddata = jsonSaveLoad.Load<TestData>("savedata");
+        TestData loaddata = jsonSaveLoad.Load<TestData>(filename);
 
         // display load data
         updateLoadData(loaddata);
