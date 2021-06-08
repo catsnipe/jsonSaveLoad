@@ -7,6 +7,7 @@ windows, ios, android
 ## function:
 jsonSaveData.Save()  
 jsonSaveData.Load()
+jsonSaveData.Delete()
 
 ## usage:
 SampleScene.unity
