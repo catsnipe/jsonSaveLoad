@@ -1,5 +1,5 @@
 # jsonSaveLoad
-simple save/load(json format)
+simple save/load(json format) for unity
 
 ## Supported os:
 windows, ios, android
