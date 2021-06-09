@@ -1,15 +1,15 @@
 # jsonSaveLoad
 simple save/load(json format) for unity
 
-## Supported os:
+## supported os
 windows, ios, android
 
-## function:
+## methods
 jsonSaveData.Save()  
-jsonSaveData.Load()
+jsonSaveData.Load()  
 jsonSaveData.Delete()
 
-## usage:
+## usage
 SampleScene.unity
 
 see more details: https://www.create-forever.games/unity-saveload-json/
