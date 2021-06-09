@@ -9,6 +9,9 @@ jsonSaveData.Delete()
 ## supported os
 windows, ios, android
 
+## version of unity
+unity2019.4 or later
+
 ## usage
 SampleScene.unity
 
